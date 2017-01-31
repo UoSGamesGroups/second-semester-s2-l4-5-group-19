@@ -13,10 +13,8 @@ public class Catapult_rotate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey (KeyCode.A))
-			//transform.Rotate(0, -1*speed, 0); 
 			transform.Rotate (Vector3.forward * 2);
 		if (Input.GetKey (KeyCode.D))
-			//transform.Rotate (0, 1*speed, 0);
 			transform.Rotate (Vector3.forward * -2);
 	}
 }

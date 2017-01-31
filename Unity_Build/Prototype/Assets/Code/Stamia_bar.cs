@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
+using UnityEngine.UI;
 
 public class Stamia_bar : MonoBehaviour {
 
@@ -8,43 +9,48 @@ public class Stamia_bar : MonoBehaviour {
 
 	public float thrust = 20.0f; 
 
-	public float cooldown = 2f; 
+	public float Stamina = 1f; 
 
-	public float Stamina = 100f; 
+	public Image Staminabar; 
 
-	public GameObject Staminabar; 
-
+	public Text Staminartxt; 
+	 
 	private bool OutOfStamina = false; 
 
-	// Use this for initialization
+
+
 	void Start () {
-		bird = GetComponent<Rigidbody2D> ();
+		
 	}
-	
-	// Update is called once per frame
-	//void Update() {
-		//if (cooldown <= Time.time);
-	//}
+
+	private void UpdateStamina() {
+		Staminabar.rectTransform.localScale = new Vector3 (Stamina, 1, 1);
+	}
 
 	void Update () { 
-		//if (cooldown <= Time.time) { 
-		//if (OutOfStamina == true) 
-		//{
-			//Debug.Log("Out of Stamina") 
-		//}
 		
-		 //if (OutOfStamina == false) 
-		//{
-			if (Input.GetKey (KeyCode.Q))
-				bird.AddForce (transform.up * thrust); 
-				//Stamina - 50f;
-			//bird.AddForce(transform.right * thrust); 
-			if (Input.GetKey (KeyCode.E))
-				bird.AddForce (transform.right * thrust);
-				//Stamina - 50f;
-			//if (Stamina == 0f); 
-				//OutOfStamina = true;
+		if (OutOfStamina == true) 
+		{
+			Staminartxt.text = ("Out of Stamina");
 		}
-	}
-//} 
 
+
+		else if(Input.GetKey (KeyCode.Q)){	
+				bird.AddForce (transform.up * thrust); 
+				Stamina -= 0.004f;  
+			UpdateStamina();
+		}
+
+		else if (Input.GetKey (KeyCode.E)){
+				bird.AddForce (transform.right * thrust);
+				Stamina -= 0.001f; 
+			UpdateStamina ();
+
+		}
+
+		else if (Stamina < 0f){ 
+			 	Stamina = 0f;
+				OutOfStamina = true;
+		}
+	} 
+}
