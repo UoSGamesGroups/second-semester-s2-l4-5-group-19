@@ -10,17 +10,30 @@ public class Power_bar : MonoBehaviour {
 
 	public float Fill; 
 
+	public float Multiplier;  
+
 	public float Force; 
+
+	public GameObject Camera1; 
+
+	public GameObject Camera2; 
 
 	public Rigidbody2D Bird;
 
 	private bool Powermax; 
 
+	private bool Powerempty; 
+
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
+		Camera2.SetActive (false);
 		if (Fill == 1) {
-			Powermax = true;
+			Powermax = true; 
+
+			if (Fill == 0) { 
+				Powerempty = true;
+			}
 		}
 	}
 
@@ -30,28 +43,50 @@ public class Power_bar : MonoBehaviour {
 
 	private void AddPower() { 
 		Fill += 0.01f; 
-		UpdatePower ();
+		UpdatePower (); 
+		if (Fill == 1) {
+			ReducePower (); 
+		}
 	}
 
 	private void ReducePower() {
 		Fill -= 0.01f; 
-		UpdatePower ();
+		UpdatePower (); 
+		if (Fill == 0) {
+			AddPower ();
+		}
+	} 
+
+	private void ApplyPower() {
+		Force = Fill * Multiplier; 
 	}
+
 	// Update is called once per frame
 	void Update () {
 		if (Powermax) { 
-			ReducePower();  
+			ReducePower();   
 			//Fill -= 0.01f; 
 			//Debug.Log ("power maxed");
 			//UpdatePower(); 
-			if (Fill == 0) {
+			if (Powerempty) {
 				AddPower();
+			} 
+			if (Input.GetKey (KeyCode.Space)) { 
+				ApplyPower (); 
+				Bird.AddForce (transform.right * Force); 
+				Bird.AddForce (transform.up * Force); 
+				Camera1.SetActive(false);
+				Camera2.SetActive (true);
 			}
 		} 
 
-		//else if (Powermax == false) {
+		else if (Powerempty) {
+			AddPower (); 
+			if (Powermax) {
+				ReducePower ();
+			}
 			//Fill += 0.01f; 
 			//UpdatePower(); 
-		//}
+		}
 	}
 }
