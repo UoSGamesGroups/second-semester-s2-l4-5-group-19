@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+public class Power_bar : MonoBehaviour { 
 
+	public float Fill = 0; 
 
-public class Power_bar : MonoBehaviour {
+	public Image bar; 
 
-	public Image Powerbar; 
+	public float Multiplier; 
 
-	public float Fill; 
-
-	public float Multiplier;  
-
-	public float Force; 
+	public float Force;  
 
 	public GameObject Camera1; 
 
@@ -20,73 +18,69 @@ public class Power_bar : MonoBehaviour {
 
 	public Rigidbody2D Bird;
 
-	private bool Powermax; 
+	private bool Powermax = false; 
 
-	private bool Powerempty; 
+	private 
+
+	//private bool Powerempty = false;
 
 
 	// Use this for initialization
 	void Start () { 
 		Camera2.SetActive (false);
-		if (Fill == 1) {
-			Powermax = true; 
+		if (Fill == 0) {
+			Powermax = false;		
+		}
 
-			if (Fill == 0) { 
-				Powerempty = true;
-			}
+		if (Fill == 1) {
+			Powermax = true;
 		}
 	}
+
 
 	private void UpdatePower() {
-		Powerbar.rectTransform.localScale = new Vector3 (Fill, 1, 1);
-	}
-
-	private void AddPower() { 
-		Fill += 0.01f; 
-		UpdatePower (); 
-		if (Fill == 1) {
-			ReducePower (); 
-		}
-	}
-
-	private void ReducePower() {
-		Fill -= 0.01f; 
-		UpdatePower (); 
-		if (Fill == 0) {
-			AddPower ();
-		}
+		bar.rectTransform.localScale = new Vector3 (Fill, 1, 1);
 	} 
 
 	private void ApplyPower() {
-		Force = Fill * Multiplier; 
-	}
+		Force = Fill * Multiplier;
+	} 
 
 	// Update is called once per frame
 	void Update () {
-		if (Powermax) { 
-			ReducePower();   
-			//Fill -= 0.01f; 
-			//Debug.Log ("power maxed");
-			//UpdatePower(); 
-			if (Powerempty) {
-				AddPower();
-			} 
-			if (Input.GetKey (KeyCode.Space)) { 
-				ApplyPower (); 
-				Bird.AddForce (transform.right * Force); 
-				Bird.AddForce (transform.up * Force); 
-				Camera1.SetActive(false);
-				Camera2.SetActive (true);
-			}
-		} 
-
-		else if (Powerempty) {
-			AddPower (); 
-			if (Powermax) {
-				ReducePower ();
-			}
-			//Fill += 0.01f; 
-			//UpdatePower(); 
+		if (Powermax == false) {
+			Fill += 0.01f; 
+			UpdatePower ();
 		}
-	}
+			
+			if (Fill == 1) {
+				Powermax = true;
+			}
+
+			else if (Fill == 1 || Fill>=1 ) {
+				Powermax = true;
+				Fill -= 0.01f;  
+			}
+		if (Powermax == true) {
+			Fill -= 0.01f; 
+			UpdatePower ();
+		}
+
+		if (Fill == 0) {
+			Powermax = false;
+		}
+
+		else if (Fill == 0 || Fill<=0 ) {
+			Powermax = false;
+			Fill += 0.01f;  
+		} 
+		if (Input.GetKey (KeyCode.Space)) { 
+			ApplyPower (); 
+			Bird.AddForce (transform.right * Force); 
+			Bird.AddForce (transform.up * Force); 
+			Camera1.SetActive(false);
+			Camera2.SetActive (true); 
+			bar.rectTransform.localScale = new Vector3 (0, 1, 1); 
+} 
+}
 }

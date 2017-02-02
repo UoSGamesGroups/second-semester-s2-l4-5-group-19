@@ -20,7 +20,9 @@ public class Stamia_bar : MonoBehaviour {
 
 
 	void Start () {
-		
+		if (Stamina == 0f) {
+			OutOfStamina = true;
+		}
 	}
 
 	private void UpdateStamina() {
@@ -48,8 +50,8 @@ public class Stamia_bar : MonoBehaviour {
 
 		}
 
-		else if (Stamina < 0f){ 
-			 	Stamina = 0f;
+		else if (Stamina == 0f || Stamina <= 0f){ 
+			 	//Stamina < 0f;
 				OutOfStamina = true;
 		}
 	} 
