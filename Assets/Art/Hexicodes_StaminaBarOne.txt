@@ -1,0 +1,6 @@
+Blue Planet: #325dff
+Sky Blue: #93aaff
+Peach: #fea444
+Road Grey: #505050
+Royal Purple: #9900d2
+Ink Red: #e50000
