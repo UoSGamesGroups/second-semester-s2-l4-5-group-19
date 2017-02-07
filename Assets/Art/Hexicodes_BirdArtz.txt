@@ -1,0 +1,8 @@
+CHICKEN
+Beak, Legs: #f0df23
+Body: #bb5f0c
+Wattle: #c10e13
+
+PENGUIN
+Beak, Feet: #ff8400
+
