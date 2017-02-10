@@ -16,18 +16,35 @@ public class Power_bar : MonoBehaviour {
 
 	public GameObject Camera2; 
 
-	public Rigidbody2D Bird;
+	public GameObject Camera3; 
+
+	public GameObject Camera4;
+
+	public Rigidbody2D Bird; 
+
+	public Rigidbody2D Peng; 
+
+	public float Player1Speed; 
+
+	public float Player2Speed;
 
 	private bool Powermax = false; 
 
-	private 
+	private bool P1launched = false; 
+
+	private bool P2launched = false;
 
 	//private bool Powerempty = false;
 
 
 	// Use this for initialization
 	void Start () { 
+		Bird.isKinematic = true;
+		Peng.isKinematic = true;
+		Player1Speed = Bird.velocity.magnitude; 
+		Player2Speed = Peng.velocity.magnitude;
 		Camera2.SetActive (false);
+		Camera4.SetActive (false);
 		if (Fill == 0) {
 			Powermax = false;		
 		}
@@ -44,10 +61,22 @@ public class Power_bar : MonoBehaviour {
 
 	private void ApplyPower() {
 		Force = Fill * Multiplier;
-	} 
+	}  
+
+
 
 	// Update is called once per frame
-	void Update () {
+	void Update () { 
+		if(Player1Speed > 1.2 && P1launched == false)
+		{
+			P1launched = true;
+		}
+
+		if(Player2Speed > 1.2 && P2launched == false)
+		{
+			P2launched = true;
+		}
+
 		if (Powermax == false) {
 			Fill += 0.01f; 
 			UpdatePower ();
@@ -75,12 +104,33 @@ public class Power_bar : MonoBehaviour {
 			Fill += 0.01f;  
 		} 
 		if (Input.GetKey (KeyCode.Space)) { 
+			Bird.isKinematic = false; 
 			ApplyPower (); 
 			Bird.AddForce (transform.right * Force); 
 			Bird.AddForce (transform.up * Force); 
 			Camera1.SetActive(false);
 			Camera2.SetActive (true); 
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1); 
-} 
+}  
+		if (P1launched == true && Player1Speed < 0.1)
+		{
+			Camera2.SetActive (false);
+			Camera1.SetActive(true);
+		}
+
+		if (Input.GetKey (KeyCode.Return)) { 
+			Peng.isKinematic = false; 
+			ApplyPower (); 
+			Peng.AddForce (transform.right * Force); 
+			Peng.AddForce (transform.up * Force); 
+			Camera3.SetActive(false);
+			Camera4.SetActive (true); 
+			bar.rectTransform.localScale = new Vector3 (0, 1, 1); 
+		}  
+		if (P2launched == true && Player2Speed < 0.1)
+		{
+			Camera4.SetActive (false);
+			Camera3.SetActive(true);
+		}
 }
 }

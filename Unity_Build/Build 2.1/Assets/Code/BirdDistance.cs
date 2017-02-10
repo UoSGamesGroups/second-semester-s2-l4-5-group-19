@@ -35,7 +35,7 @@ public class BirdDistance : MonoBehaviour {
 		if (launched == true && PlayerSpeed < 0.1)
 		{
 			PlayerX = rb.position.x; 
-			information = "Your Distance: " + PlayerX.ToString("N1");
+			information = " You traveled " + PlayerX.ToString("N0") + " Miles";
 			//information + PlayerX.ToString;
 			text.text = information;
 			//Debug.Log(PlayerX);
