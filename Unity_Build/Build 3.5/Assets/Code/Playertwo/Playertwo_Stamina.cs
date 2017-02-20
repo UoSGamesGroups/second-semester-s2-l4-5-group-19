@@ -37,15 +37,15 @@ public class Playertwo_Stamina : MonoBehaviour {
 		}
 
 
-		else if(Input.GetKey (KeyCode.I)){	
+		else if(Input.GetKeyDown (KeyCode.I)){	
 			Peng.AddForce (transform.up * thrust); 
-			Stamina -= 0.004f;  
+			Stamina -= 0.025f;  
 			UpdateStamina();
 		}
 
-		else if (Input.GetKey (KeyCode.P)){
+		else if (Input.GetKeyDown (KeyCode.P)){
 			Peng.AddForce (transform.right * thrust);
-			Stamina -= 0.001f; 
+			Stamina -= 0.025f; 
 			UpdateStamina ();
 
 		}

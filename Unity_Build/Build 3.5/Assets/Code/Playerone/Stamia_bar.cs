@@ -37,15 +37,15 @@ public class Stamia_bar : MonoBehaviour {
 		}
 
 
-		else if(Input.GetKey (KeyCode.Q)){	
+		else if(Input.GetKeyDown (KeyCode.Q)){	
 				bird.AddForce (transform.up * thrust); 
-				Stamina -= 0.004f;  
+				Stamina -= 0.025f;  
 			UpdateStamina();
 		}
 
-		else if (Input.GetKey (KeyCode.E)){
+		else if (Input.GetKeyDown (KeyCode.E)){
 				bird.AddForce (transform.right * thrust);
-				Stamina -= 0.001f; 
+				Stamina -= 0.025f; 
 			UpdateStamina ();
 
 		}
