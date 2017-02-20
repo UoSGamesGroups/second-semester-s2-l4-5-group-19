@@ -18,12 +18,12 @@ public class Catapult_rotate : MonoBehaviour {
     {
 
         bool getLaunch = p1Distance.GetComponent<BirdDistance>().launched;
-        if (Input.GetKey(KeyCode.A) && testi == false)
+        if (Input.GetKey(KeyCode.A) && getLaunch == false)
         {
             transform.Rotate(Vector3.forward * 2);
         }
 
-        if (Input.GetKey(KeyCode.D) && testi == false)
+        if (Input.GetKey(KeyCode.D) && getLaunch == false)
         {
             transform.Rotate(Vector3.forward * -2);
         }
