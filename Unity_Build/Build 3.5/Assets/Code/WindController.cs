@@ -296,7 +296,7 @@ public class WindController : MonoBehaviour {
 		WindAffector += 1;
 	}
 	IEnumerator EndofSpeed(){
-		yield return new WaitForSeconds(45); 
+		yield return new WaitForSeconds(90); 
 		Windminus3.SetActive (false); 
 		Windminus2.SetActive (false); 
 		Windminus1.SetActive (false); 
