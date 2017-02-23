@@ -34,6 +34,9 @@ public class Power_bar : MonoBehaviour {
 
 	private bool P2launched = false;
 
+	public BirdDistance p1Distance;
+	public BirdDistance p2Distance;
+
 	//private bool Powerempty = false;
 
 
@@ -81,15 +84,15 @@ public class Power_bar : MonoBehaviour {
 			Fill += 0.01f; 
 			UpdatePower ();
 		}
-			
-			if (Fill == 1) {
-				Powermax = true;
-			}
 
-			else if (Fill == 1 || Fill>=1 ) {
-				Powermax = true;
-				Fill -= 0.01f;  
-			}
+		if (Fill == 1) {
+			Powermax = true;
+		}
+
+		else if (Fill == 1 || Fill>=1 ) {
+			Powermax = true;
+			Fill -= 0.01f;  
+		}
 		if (Powermax == true) {
 			Fill -= 0.01f; 
 			UpdatePower ();
@@ -102,8 +105,9 @@ public class Power_bar : MonoBehaviour {
 		else if (Fill == 0 || Fill<=0 ) {
 			Powermax = false;
 			Fill += 0.01f;  
-		} 
-		if (Input.GetKey (KeyCode.Space)) { 
+		}
+		bool getLaunch = p1Distance.GetComponent<BirdDistance>().launched;
+		if (Input.GetKey (KeyCode.Space) && getLaunch == false) { 
 			Bird.isKinematic = false; 
 			ApplyPower (); 
 			Bird.AddForce (transform.right * Force); 
@@ -111,14 +115,15 @@ public class Power_bar : MonoBehaviour {
 			Camera1.SetActive(false);
 			Camera2.SetActive (true); 
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1); 
-}  
+		}  
 		if (P1launched == true && Player1Speed < 0.1)
 		{
 			Camera2.SetActive (false);
 			Camera1.SetActive(true);
 		}
 
-		if (Input.GetKey (KeyCode.Return)) { 
+		bool newgetLaunch = p2Distance.GetComponent<BirdDistance>().launched;
+		if (Input.GetKey (KeyCode.Return) && newgetLaunch == false) { 
 			Peng.isKinematic = false; 
 			ApplyPower (); 
 			Peng.AddForce (transform.right * Force); 
@@ -132,5 +137,5 @@ public class Power_bar : MonoBehaviour {
 			Camera4.SetActive (false);
 			Camera3.SetActive(true);
 		}
-}
+	}
 }
