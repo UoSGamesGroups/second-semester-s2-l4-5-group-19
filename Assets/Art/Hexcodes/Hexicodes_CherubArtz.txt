@@ -1,0 +1,10 @@
+Skin: #ffd987
+Skin P2: #583422
+Hair: #9c492d
+Iris: #6dcff6
+Lips: #af2630
+Cloths: #f9f9f9
+(Only Player 1 colours)
+
+P2 Skin Hue/Sat modifier: -21, 30,-69
+P2 Skin Hue/Sat modifier (hair): -14, -33, -65
