@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MBGCloudZLock : MonoBehaviour {
+public class SunZLock : MonoBehaviour
+{
 
     void Update()
     {
         Vector3 pos = transform.position;
-        pos.z = 70;
+        pos.z = 65;
         transform.position = pos;
     }
 }

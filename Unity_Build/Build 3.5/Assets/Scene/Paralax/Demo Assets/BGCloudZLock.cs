@@ -7,7 +7,7 @@ public class BGCloudZLock : MonoBehaviour {
     void Update()
     {
         Vector3 pos = transform.position;
-        pos.z = 1.5f;
+        pos.z = 80;
         transform.position = pos;
     }
 }

@@ -7,7 +7,7 @@ public class FGCloudZLock : MonoBehaviour {
     void Update()
     {
         Vector3 pos = transform.position;
-        pos.z = -1.5f;
+        pos.z = 50;
         transform.position = pos;
     }
 }

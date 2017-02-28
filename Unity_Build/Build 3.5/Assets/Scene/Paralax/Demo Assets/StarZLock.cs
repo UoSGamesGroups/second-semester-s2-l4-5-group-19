@@ -7,7 +7,7 @@ public class StarZLock : MonoBehaviour {
     void Update()
     {
         Vector3 pos = transform.position;
-        pos.z = 1;
+        pos.z = 75;
         transform.position = pos;
     }
 }

@@ -7,7 +7,7 @@ public class MoonZLock : MonoBehaviour {
 	void Update ()
     {
         Vector3 pos = transform.position;
-        pos.z = -1;
+        pos.z = 55;
         transform.position = pos;
     }
 }
