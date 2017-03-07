@@ -12,6 +12,8 @@ public class Power_bar : MonoBehaviour {
 
 	public float Force;  
 
+	public float LateForce;
+
 	public GameObject Camera1; 
 
 	public GameObject Camera2; 
@@ -65,7 +67,8 @@ public class Power_bar : MonoBehaviour {
 	} 
 
 	private void ApplyPower() {
-		Force = Fill * Multiplier;
+		Force = Fill * Multiplier; 
+		LateForce = Force / 2; 
 	}
 
 
@@ -142,15 +145,15 @@ public class Power_bar : MonoBehaviour {
             yield return new WaitForSeconds(5);
                 Bird.isKinematic = false;
                 ApplyPower();
-                Bird.AddForce(transform.right * Force);
-                Bird.AddForce(transform.up * Force / 20);
+                Bird.AddForce(transform.right * LateForce);
+                Bird.AddForce(transform.up * LateForce / 20);
                 Camera1.SetActive(false);
                 Camera2.SetActive(true);
                 //bar.rectTransform.localScale = new Vector3(0, 1, 1)
                 Peng.isKinematic = false;
                 ApplyPower();
-                Peng.AddForce(transform.right * Force);
-                Peng.AddForce(transform.up * Force / 20);
+                Peng.AddForce(transform.right * LateForce);
+                Peng.AddForce(transform.up * LateForce / 20);
                 Camera3.SetActive(false);
                 Camera4.SetActive(true);
                 //bar.rectTransform.localScale = new Vector3(0, 1, 1); 
