@@ -109,8 +109,8 @@ public class Power_bar : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Space)) {
 			Bird.isKinematic = false;
 			ApplyPower ();
-			Bird.AddForce (transform.right * Force);
-			Bird.AddForce (transform.up * Force / 20);
+			Bird.AddForce (transform.right * Force / 2);
+			Bird.AddForce (transform.up * Force / 10);
 			Camera1.SetActive (false);
 			Camera2.SetActive (true);
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1);
@@ -124,8 +124,8 @@ public class Power_bar : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Return)) {
 			Peng.isKinematic = false;
 			ApplyPower ();
-			Peng.AddForce (transform.right * Force);
-			Peng.AddForce (transform.up * Force / 20);
+			Peng.AddForce (transform.right * Force / 2);
+			Peng.AddForce (transform.up * Force / 10);
 			Camera3.SetActive (false);
 			Camera4.SetActive (true);
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1);
@@ -145,15 +145,15 @@ public class Power_bar : MonoBehaviour {
             yield return new WaitForSeconds(5);
                 Bird.isKinematic = false;
                 ApplyPower();
-                Bird.AddForce(transform.right * LateForce);
-                Bird.AddForce(transform.up * LateForce / 20);
+                Bird.AddForce(transform.right * LateForce/ 2);
+                Bird.AddForce(transform.up * LateForce / 10);
                 Camera1.SetActive(false);
                 Camera2.SetActive(true);
                 //bar.rectTransform.localScale = new Vector3(0, 1, 1)
                 Peng.isKinematic = false;
                 ApplyPower();
-                Peng.AddForce(transform.right * LateForce);
-                Peng.AddForce(transform.up * LateForce / 20);
+                Peng.AddForce(transform.right * LateForce / 2);
+                Peng.AddForce(transform.up * LateForce / 10);
                 Camera3.SetActive(false);
                 Camera4.SetActive(true);
                 //bar.rectTransform.localScale = new Vector3(0, 1, 1); 
