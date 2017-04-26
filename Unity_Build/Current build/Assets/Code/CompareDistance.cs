@@ -31,7 +31,7 @@ public class CompareDistance : MonoBehaviour {
 					winner = "Player Two Wins!"; 
 					CompareDis.text = winner;
 				}
-				else
+				if (p1Distance.GetComponent<BirdDistance>().PlayerX == p2Distance.GetComponent<BirdDistance>().PlayerX)
 				{
 					winner = "It's a draw!"; 
 					CompareDis.text = winner;

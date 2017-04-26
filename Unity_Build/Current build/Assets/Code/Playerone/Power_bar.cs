@@ -36,7 +36,10 @@ public class Power_bar : MonoBehaviour {
 
 	private bool P2launched = false; 
 
-	private bool DelayedTime = false; 
+	private bool DelayedTime = false;
+
+	private bool OneLaunch = false;
+	private bool TwoLaunch = false;
 
 	public BirdDistance p1Distance;
 	public BirdDistance p2Distance;
@@ -73,8 +76,8 @@ public class Power_bar : MonoBehaviour {
 
 
 
-    // Update is called once per frame
-    void Update() {
+	// Update is called once per frame
+	void Update() {
 		if (Player1Speed > 1.2 && P1launched == false) {
 			P1launched = true;
 		}
@@ -106,11 +109,12 @@ public class Power_bar : MonoBehaviour {
 			Fill += 0.01f;
 		}
 		//bool getLaunch = p1Distance.GetComponent<BirdDistance>().launched;
-		if (Input.GetKey (KeyCode.Space)) {
+		if (Input.GetKey (KeyCode.Space) && OneLaunch == false) {
+			OneLaunch = true;
 			Bird.isKinematic = false;
 			ApplyPower ();
-			Bird.AddForce (transform.right * Force / 2);
-			Bird.AddForce (transform.up * Force / 10);
+			Bird.AddForce (transform.right * 2);
+			Bird.AddForce (transform.up * 100);
 			Camera1.SetActive (false);
 			Camera2.SetActive (true);
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1);
@@ -121,11 +125,12 @@ public class Power_bar : MonoBehaviour {
 		}
 
 		//bool newgetLaunch = p2Distance.GetComponent<BirdDistance>().launched;
-		if (Input.GetKey (KeyCode.Return)) {
+		if (Input.GetKey (KeyCode.Return) && TwoLaunch == false) {
+			TwoLaunch = true;
 			Peng.isKinematic = false;
 			ApplyPower ();
-			Peng.AddForce (transform.right * Force / 2);
-			Peng.AddForce (transform.up * Force / 10);
+			Peng.AddForce (transform.right * 2);
+			Peng.AddForce (transform.up * 100 );
 			Camera3.SetActive (false);
 			Camera4.SetActive (true);
 			bar.rectTransform.localScale = new Vector3 (0, 1, 1);
@@ -141,25 +146,25 @@ public class Power_bar : MonoBehaviour {
 	}
 
 
-        IEnumerator Late(){
-            yield return new WaitForSeconds(5);
-                Bird.isKinematic = false;
-                ApplyPower();
-                Bird.AddForce(transform.right * LateForce/ 2);
-                Bird.AddForce(transform.up * LateForce / 10);
-                Camera1.SetActive(false);
-                Camera2.SetActive(true);
-                //bar.rectTransform.localScale = new Vector3(0, 1, 1)
-                Peng.isKinematic = false;
-                ApplyPower();
-                Peng.AddForce(transform.right * LateForce / 2);
-                Peng.AddForce(transform.up * LateForce / 10);
-                Camera3.SetActive(false);
-                Camera4.SetActive(true);
-                //bar.rectTransform.localScale = new Vector3(0, 1, 1); 
+	IEnumerator Late(){
+		yield return new WaitForSeconds(1);
+		Bird.isKinematic = false;
+		ApplyPower();
+		Bird.AddForce(transform.right * 10);
+		Bird.AddForce(transform.up * 10);
+		Camera1.SetActive(false);
+		Camera2.SetActive(true);
+		//bar.rectTransform.localScale = new Vector3(0, 1, 1)
+		Peng.isKinematic = false;
+		ApplyPower();
+		Peng.AddForce(transform.right * LateForce / 2);
+		Peng.AddForce(transform.up * LateForce / 10);
+		Camera3.SetActive(false);
+		Camera4.SetActive(true);
+		//bar.rectTransform.localScale = new Vector3(0, 1, 1); 
 
-            }
-        }
-    
+	}
+}
+
 
 
